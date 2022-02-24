@@ -24,23 +24,12 @@ contract Token {
 
     constructor(uint256 _initialSupply) public {
         balanceOf[msg.sender] = _initialSupply; 
-        //allocate the initial supply
         totalSupply = _initialSupply;
     }
-
-    //Transfer 
-
-
     function transfer(address _to, uint256 _value) public returns (bool success) {
-        //Exception
         require(balanceOf[msg.sender] >= _value); 
-        //Transfer the balance
         balanceOf[msg.sender] -= _value; 
-        balanceOf[_to] += _value; 
-
-        //Transfer Event    
+        balanceOf[_to] += _value;    
         emit Transfer(msg.sender, _to, _value); 
-        
-        //Return a bool
         return true; 
     }
